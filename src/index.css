@@ -1,1 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;800&family=Cambo&family=Candal&family=Carlito:wght@400;700&family=Hanalei+Fill&family=Inconsolata:wght@400;500;600&family=Inder&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Ubuntu+Condensed&display=swap");
 @import "tailwindcss";
+
+@theme {
+  /* Fonts from the Figma design */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Baloo Bhaina 2", "Inter", sans-serif;
+  --font-nav: "Roboto", "Inter", sans-serif;
+  --font-card: "Inder", "Inter", sans-serif;
+  --font-mono: "Inconsolata", monospace;
+  --font-job: "Candal", "Inter", sans-serif;
+  --font-date: "Cambo", serif;
+  --font-poppins: "Poppins", "Inter", sans-serif;
+  --font-button: "Ubuntu Condensed", "Inter", sans-serif;
+  --font-fancy: "Hanalei Fill", "Inter", sans-serif;
+  --font-calibri: "Calibri", "Carlito", sans-serif;
+
+  /* Colours from the Figma design */
+  --color-ink: #000000;
+  --color-navy-deep: #00153e;
+  --color-navy-card: #152e5e;
+  --color-navy-mid: #013190;
+  --color-navy: #0c3587;
+  --color-royal: #0629b5;
+  --color-blue: #0055ff;
+  --color-blue-bright: #0048ff;
+  --color-periwinkle: #6da5ff;
+  --color-sky: #7ec5ff;
+  --color-cyan: #68ffff;
+  --color-aqua: #00ffe1;
+  --color-muted: #afafaf;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ink);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Reusable gradients taken from the design */
+.bg-hero-gradient {
+  background: linear-gradient(180deg, #000000 0%, #000d2d 35%, #0030a9 70%, #0048ff 100%);
+}
+.bg-card-gradient {
+  background: linear-gradient(180deg, #013190 0%, #004ade 100%);
+}
+.bg-page-fade {
+  background: linear-gradient(180deg, #000000 0%, #152e5e 50%, #000000 100%);
+}
+.bg-services-gradient {
+  background: linear-gradient(180deg, #000205 0%, #03266d 100%);
+}
