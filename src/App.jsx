@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Home from './pages/Home'
 
 function Placeholder({ title }) {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Navbar />
       <main className="flex flex-1 flex-col">
         <Routes>
-          <Route path="/" element={<Placeholder title="Home" />} />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<Placeholder title="About" />} />
           <Route path="/services" element={<Placeholder title="Services" />} />
           <Route path="/projects" element={<Placeholder title="Projects" />} />
