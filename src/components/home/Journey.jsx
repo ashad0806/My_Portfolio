@@ -35,10 +35,12 @@ function JourneyCard({ item, style, className = '' }) {
       style={style}
       className={`rounded-[20px] bg-[linear-gradient(135deg,#ffffff,#0033ff)] p-[3px] shadow-[0_8px_24px_rgba(0,0,0,0.55)] ${className}`}
     >
-      <div className="relative h-full min-h-[195px] rounded-[17px] bg-[linear-gradient(180deg,#0c3587,#000000)] px-[21px] pb-12 pt-[19px]">
-        <div className="flex items-center gap-2">
-          <Icon size={34} />
-          <h3 className="font-job text-xl leading-8 xl:text-[25px]">{title}</h3>
+      <div className="relative h-full min-h-[195px] rounded-[17px] bg-[linear-gradient(180deg,#0c3587,#000000)] pb-12 pl-[21px] pr-[18px] pt-[19px]">
+        <div className="flex items-center gap-1.5">
+          <Icon size={34} className="shrink-0" />
+          <h3 className="font-job text-xl leading-8 xl:whitespace-nowrap xl:text-[clamp(18px,1.727vw,25px)]">
+            {title}
+          </h3>
         </div>
         <p className="mt-5 font-date text-[15px] leading-[17px] xl:mt-8">{text}</p>
         <span className="absolute bottom-3 right-6 font-date text-[15px]">{date}</span>

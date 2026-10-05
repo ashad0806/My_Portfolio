@@ -21,6 +21,7 @@ function App() {
           <Route path="/about" element={<Placeholder title="About" />} />
           <Route path="/services" element={<Placeholder title="Services" />} />
           <Route path="/projects" element={<Placeholder title="Projects" />} />
+          <Route path="/projects/:slug" element={<Placeholder title="Project Details" />} />
           <Route path="/skills" element={<Placeholder title="Skills" />} />
           <Route path="/journey" element={<Placeholder title="Journey" />} />
           <Route path="/contact" element={<Placeholder title="Contact" />} />
