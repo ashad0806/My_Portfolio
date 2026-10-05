@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
+import Services from './pages/Services'
 
 function Placeholder({ title }) {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Placeholder title="Services" />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Placeholder title="Projects" />} />
           <Route path="/projects/:slug" element={<Placeholder title="Project Details" />} />
           <Route path="/skills" element={<Placeholder title="Skills" />} />

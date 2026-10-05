@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;800&family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Cambo&family=Candal&family=Carlito:wght@400;700&family=Hanalei+Fill&family=Inconsolata:wght@400;500;600&family=Inder&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Ubuntu+Condensed&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;500;600;700;800&family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Cambo&family=Candal&family=Carlito:wght@400;700&family=Hanalei+Fill&family=Inspiration&family=Inconsolata:wght@400;500;600&family=Inder&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Ubuntu+Condensed&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -6,6 +6,7 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-heading: "Baloo Bhaina 2", "Inter", sans-serif;
   --font-display: "Baloo Tamma 2", "Baloo Bhaina 2", sans-serif;
+  --font-script: "Inspiration", cursive;
   --font-nav: "Roboto", "Inter", sans-serif;
   --font-card: "Inder", "Inter", sans-serif;
   --font-mono: "Inconsolata", monospace;
