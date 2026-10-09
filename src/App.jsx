@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
 import Skills from './pages/Skills'
+import Journey from './pages/Journey'
 
 function Placeholder({ title }) {
   return (
@@ -26,7 +27,7 @@ function App() {
           <Route path="/projects" element={<Placeholder title="Projects" />} />
           <Route path="/projects/:slug" element={<Placeholder title="Project Details" />} />
           <Route path="/skills" element={<Skills />} />
-          <Route path="/journey" element={<Placeholder title="Journey" />} />
+          <Route path="/journey" element={<Journey />} />
           <Route path="/contact" element={<Placeholder title="Contact" />} />
           <Route path="/resume" element={<Placeholder title="Resume" />} />
         </Routes>
