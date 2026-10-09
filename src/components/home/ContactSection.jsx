@@ -1,4 +1,4 @@
- import { useState } from 'react'
+import { useState } from 'react'
 import { Mail, Phone, MapPin, Send, Share2 } from 'lucide-react'
 import { FaLinkedinIn, FaGithub, FaInstagram, FaFacebookF } from 'react-icons/fa'
 
@@ -21,7 +21,10 @@ const socials = [
 const inputClass =
   'h-[51px] w-full rounded-[10px] bg-navy px-[13px] font-card text-lg text-white outline-none placeholder:text-muted focus:ring-2 focus:ring-sky sm:text-[21px]'
 
-function ContactSection() {
+function ContactSection({
+  bgClass = 'bg-black',
+  paddingClass = 'pb-16 pt-12 xl:pb-[112px] xl:pt-[76px]',
+}) {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
 
@@ -51,7 +54,7 @@ function ContactSection() {
   }
 
   return (
-    <section className="bg-black px-6 pb-16 pt-12 xl:px-[58px] xl:pb-[112px] xl:pt-[76px]">
+    <section className={`${bgClass} px-6 xl:px-[58px] ${paddingClass}`}>
       <div className="mx-auto max-w-[1448px]">
         {/* Heading */}
         <h2 className="font-heading text-4xl sm:text-5xl xl:text-[53px] xl:leading-[76px]">

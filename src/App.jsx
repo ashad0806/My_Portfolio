@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -10,11 +10,15 @@ import ProjectDetail from './pages/ProjectDetail'
 import Skills from './pages/Skills'
 import Journey from './pages/Journey'
 import Resume from './pages/Resume'
+import Contact from './pages/Contact'
 
-function Placeholder({ title }) {
+function NotFound() {
   return (
-    <div className="flex flex-1 items-center justify-center py-40">
-      <h1 className="font-heading text-6xl">{title}</h1>
+    <div className="flex flex-1 flex-col items-center justify-center gap-6 py-40">
+      <h1 className="font-heading text-6xl">Page not found</h1>
+      <Link to="/" className="text-cyan underline">
+        Back to home
+      </Link>
     </div>
   )
 }
@@ -33,8 +37,9 @@ function App() {
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/journey" element={<Journey />} />
-          <Route path="/contact" element={<Placeholder title="Contact" />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/resume" element={<Resume />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
