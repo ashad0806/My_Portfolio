@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
+import Skills from './pages/Skills'
 
 function Placeholder({ title }) {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Placeholder title="Projects" />} />
           <Route path="/projects/:slug" element={<Placeholder title="Project Details" />} />
-          <Route path="/skills" element={<Placeholder title="Skills" />} />
+          <Route path="/skills" element={<Skills />} />
           <Route path="/journey" element={<Placeholder title="Journey" />} />
           <Route path="/contact" element={<Placeholder title="Contact" />} />
           <Route path="/resume" element={<Placeholder title="Resume" />} />
