@@ -1,7 +1,9 @@
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import ScrollProgress from './components/ScrollProgress'
+import useScrollReveal from './hooks/useScrollReveal'
 import Home from './pages/Home'
 import About from './pages/About'
 import Services from './pages/Services'
@@ -24,23 +26,29 @@ function NotFound() {
 }
 
 function App() {
+  const location = useLocation()
+  useScrollReveal()
+
   return (
     <div className="flex min-h-screen flex-col">
       <ScrollToTop />
+      <ScrollProgress />
       <Navbar />
       <main className="flex flex-1 flex-col">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="/skills" element={<Skills />} />
-          <Route path="/journey" element={<Journey />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div key={location.pathname} className="page-enter flex flex-1 flex-col">
+          <Routes location={location}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/journey" element={<Journey />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </main>
       <Footer />
     </div>

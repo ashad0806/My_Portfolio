@@ -60,3 +60,113 @@ body {
 .bg-services-gradient {
   background: linear-gradient(180deg, #000205 0%, #03266d 100%);
 }
+
+/* ===== Step 19: animations ===== */
+@theme {
+  --animate-shimmer: shimmer 5s linear infinite;
+  --animate-photo: float 6s ease-in-out infinite, glow 3s ease-in-out infinite;
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 30px rgba(0, 72, 255, 0.35);
+    }
+    50% {
+      box-shadow: 0 0 60px rgba(0, 225, 255, 0.6);
+    }
+  }
+}
+
+/* Scroll reveal (the classes are added by useScrollReveal) */
+.rv {
+  opacity: 0;
+}
+.rv.rv-in {
+  opacity: 1;
+  animation: rv-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-delay, 0ms) backwards;
+}
+@keyframes rv-up {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Page change */
+.page-enter {
+  animation: page-in 0.5s ease-out backwards;
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Navbar entrance */
+header {
+  animation: nav-in 0.7s ease-out backwards;
+}
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hover effects */
+main article {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+main article:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0, 85, 255, 0.28);
+}
+main :is(a, button)[class*="rounded-"] {
+  transition: transform 0.25s ease, filter 0.25s ease, background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+main :is(a, button)[class*="rounded-"]:hover {
+  transform: translateY(-3px);
+}
+main :is(a, button)[class*="rounded-"]:active {
+  transform: scale(0.97);
+}
+
+/* Respect "reduce motion" system setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -14,13 +14,16 @@ function Hero() {
           {/* Availability badge */}
           <div className="inline-block rounded-[20px] bg-[linear-gradient(90deg,#002bff,#ffffff)] p-px">
             <div className="flex items-center gap-3 rounded-[20px] bg-[#003288] px-[10px] py-[2px]">
-              <span className="h-3 w-3 rounded-full bg-[#00ff73]" />
+              <span className="relative flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#00ff73] opacity-75" />
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-[#00ff73]" />
+              </span>
               <span className="font-sans text-[15px]">Available for new opportunities</span>
             </div>
           </div>
 
           {/* Name */}
-          <h1 className="mt-2 bg-[linear-gradient(90deg,#00e5ff,#0759ff)] bg-clip-text font-sans text-5xl font-bold text-transparent lg:text-[55px] lg:leading-[67px]">
+          <h1 data-static className="mt-2 animate-shimmer bg-[linear-gradient(90deg,#00e5ff,#0759ff,#00e5ff)] bg-[length:200%_auto] bg-clip-text font-sans text-5xl font-bold text-transparent lg:text-[55px] lg:leading-[67px]">
             ASHAD ALAM
           </h1>
 
@@ -63,8 +66,7 @@ function Hero() {
         </div>
 
         {/* Photo side */}
-        <div className="shrink-0 rounded-full bg-[linear-gradient(135deg,#ffffff,#3381ff_50%,#001e4f)] p-[5px] shadow-[0_0_40px_rgba(0,72,255,0.45)]">
-          <img
+        <div className="shrink-0 animate-photo rounded-full bg-[linear-gradient(135deg,#ffffff,#3381ff_50%,#001e4f)] p-[5px] shadow-[0_0_40px_rgba(0,72,255,0.45)]">          <img
             src="/images/hero.png"
             alt="Ashad Alam"
             className="h-64 w-64 rounded-full object-cover object-[center_20%] sm:h-80 sm:w-80 lg:h-[399px] lg:w-[421px]"
