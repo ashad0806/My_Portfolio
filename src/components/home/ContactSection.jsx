@@ -12,10 +12,10 @@ const info = [
 
 // Replace the '#' links with your real profile links
 const socials = [
-  { icon: FaLinkedinIn, label: 'LinkedIn', href: '#' },
+  { icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/in/ashad-alam-09723636a/' },
   { icon: FaGithub, label: 'GitHub', href: 'https://github.com/ashad0806' },
-  { icon: FaInstagram, label: 'Instagram', href: '#' },
-  { icon: FaFacebookF, label: 'Facebook', href: '#' },
+  { icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/ashu_you_see/' },
+  { icon: FaFacebookF, label: 'Facebook', href: 'https://www.facebook.com/ashad.aalam.71' },
 ]
 
 const inputClass =
