@@ -176,32 +176,50 @@ function Resume() {
           </div>
 
           {/* Experience */}
-          <div className={`${card} px-6 pb-8 pt-[37px] xl:min-h-[739px] xl:px-[38px]`}>
+          <div className={`${card} px-6 pb-12 pt-[37px] xl:px-[38px]`}>
             <CardTitle icon={Briefcase}>Experience</CardTitle>
 
-            <div className="mt-[35px]">
-              {jobs.map((job, i) => (
-                <div key={job.title} className="relative min-h-[193px] pl-8 xl:pl-[53px]">
-                  <span className="absolute left-0 top-[7px] h-[17px] w-[17px] rounded-full border-2 border-white bg-cyan shadow-[0_0_8px_rgba(104,255,255,0.7)] xl:left-[13px]" />
-                  {i < jobs.length - 1 && (
-                    <span className="absolute left-[7px] top-[19px] hidden h-[151px] w-[3px] bg-[linear-gradient(180deg,#619eff,#ffffff)] xl:left-[20px] xl:block" />
-                  )}
+            <div className="mt-[40px]">
+              {jobs.map((job, i) => {
+                const last = i === jobs.length - 1
+                return (
+                  <div
+                    key={job.title}
+                    className={`relative pl-[44px] xl:pl-[56px] ${last ? '' : 'pb-[52px]'}`}
+                  >
+                    {/* Line down to the next dot */}
+                    {!last && (
+                      <span className="absolute bottom-[-6px] left-[14px] top-[23px] w-[3px] rounded-full bg-[linear-gradient(180deg,#68ffff,#3b6dff)] xl:left-[20px]" />
+                    )}
 
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 xl:pr-[17px]">
-                    <h3 className="font-job text-lg leading-[26px] xl:text-xl">{job.title}</h3>
-                    <span className="font-job text-[15px]">{job.date}</span>
+                    {/* Dot */}
+                    <span className="absolute left-[7px] top-[6px] h-[17px] w-[17px] rounded-full border-2 border-white bg-cyan shadow-[0_0_10px_rgba(104,255,255,0.8)] xl:left-[13px]" />
+
+                    {/* Title and date */}
+                    <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                      <h3 className="font-job text-xl leading-[30px] tracking-[0.01em] xl:text-[22px]">
+                        {job.title}
+                      </h3>
+                      <span className="rounded-[20px] bg-[#4c5cad] px-3 py-1 font-job text-[14px] leading-5">
+                        {job.date}
+                      </span>
+                    </div>
+
+                    {/* Bullets */}
+                    <ul className="mt-[20px] flex flex-col gap-[14px]">
+                      {job.bullets.map((b, bi) => (
+                        <li
+                          key={bi}
+                          className="relative pl-[28px] font-date text-[15px] leading-[25px] tracking-[0.01em] xl:text-[16px]"
+                        >
+                          <span className="absolute left-[6px] top-[9px] h-[8px] w-[8px] rounded-full bg-cyan" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-
-                  <ul className="mt-[18px] flex flex-col gap-[13px] xl:max-w-[610px]">
-                    {job.bullets.map((b, bi) => (
-                      <li key={bi} className="relative pl-[31px] font-date text-[15px] leading-[17px]">
-                        <span className="absolute left-[9px] top-1 h-[9px] w-[9px] rounded-full bg-cyan" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
