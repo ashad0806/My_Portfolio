@@ -60,6 +60,7 @@ function ProjectDetail() {
     <>
       {/* Hero */}
       <section
+        data-keep
         className="flex h-[420px] items-end justify-center border-b-2 border-white px-6 pb-8 text-center sm:h-[520px] xl:h-[706px] xl:pb-[50px]"
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(28,28,28,0) 0%, rgba(14,14,14,0.94) 91%, rgba(0,0,0,0.94) 100%), url(${p.hero})`,

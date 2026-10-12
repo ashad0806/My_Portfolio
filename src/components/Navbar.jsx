@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Home, User, ShoppingBag, Folder, Mail, FileText, Menu, X } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 const links = [
   { to: '/', label: 'Home', icon: Home },
@@ -36,22 +37,28 @@ function Navbar() {
       </nav>
 
       {/* Resume button (desktop) */}
-      <Link
-        to="/resume"
-        className="hidden h-[42px] items-center gap-3 rounded-full bg-navy-card px-6 font-sans text-xl text-white transition hover:bg-navy lg:flex"
-      >
+      <div className="hidden items-center gap-3 lg:flex">
+        <ThemeToggle />
+        <Link
+          to="/resume"
+          className="flex h-[42px] items-center gap-3 rounded-full bg-navy-card px-6 font-sans text-xl text-white transition hover:bg-navy"
+        >
         <FileText size={24} />
-        Resume
-      </Link>
+          Resume
+        </Link>
+      </div>
 
       {/* Menu button (phone and tablet) */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="text-white lg:hidden"
-        aria-label="Toggle menu"
-      >
-        {open ? <X size={30} /> : <Menu size={30} />}
-      </button>
+      <div className="flex items-center gap-4 lg:hidden">
+        <ThemeToggle />
+        <button
+          onClick={() => setOpen(!open)}
+          className="text-white"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={30} /> : <Menu size={30} />}
+        </button>
+      </div>
 
       {/* Dropdown menu (phone and tablet) */}
       {open && (

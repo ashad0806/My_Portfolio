@@ -9,6 +9,13 @@
       content="Ashad Alam - UI/UX Designer, Web Developer and Python Developer. Portfolio, projects and services."
     />
     <title>Ashad Alam | UI/UX Designer &amp; Python Developer</title>
+    <script>
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light')
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
