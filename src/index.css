@@ -276,3 +276,21 @@ main :is(a, button)[class*="rounded-"]:active {
     display: none;
   }
 }
+
+/* ===== Step 21: moving curve ===== */
+.flow-comet {
+  stroke-dasharray: 90 910;
+  animation: flow-comet 7s linear infinite;
+  filter: drop-shadow(0 0 6px #68ffff);
+}
+@keyframes flow-comet {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-comet {
+    animation: none;
+    opacity: 0;
+  }
+}

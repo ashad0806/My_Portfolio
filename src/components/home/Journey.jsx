@@ -1,6 +1,29 @@
 import { Link } from 'react-router-dom'
 import { Code, FileText, PenTool, Play } from 'lucide-react'
 
+// Three shapes of your curve. The path morphs between them so the line keeps moving.
+const PATH_A =
+  'M0 28.7 C48.2 4 160.2 -31.2 247 53.2 C333.8 137.6 281.3 197.4 241.5 274.7 C201.3 366.7 348.3 560.7 572.5 337.7 C660.5 250.2 627.5 300.7 704 199.2 C740.1 151.3 972.9 87.2 1082.5 227.2 C1192.1 367.2 1128.2 512.5 1082.5 601.7'
+const PATH_B =
+  'M0 28.7 C70 -18 140 -10 247 53.2 C350 120 265 215 241.5 274.7 C180 385 370 535 572.5 337.7 C680 270 600 330 704 199.2 C770 130 950 120 1082.5 227.2 C1170 345 1150 490 1082.5 601.7'
+const PATH_C =
+  'M0 28.7 C30 30 185 -50 247 53.2 C320 160 300 180 241.5 274.7 C225 345 325 585 572.5 337.7 C640 230 650 280 704 199.2 C715 170 995 60 1082.5 227.2 C1215 390 1105 535 1082.5 601.7'
+const PATH_VALUES = [PATH_A, PATH_B, PATH_C, PATH_A].join(';')
+
+function MorphAnimate() {
+  return (
+    <animate
+      attributeName="d"
+      dur="14s"
+      repeatCount="indefinite"
+      calcMode="spline"
+      keyTimes="0;0.33;0.66;1"
+      keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"
+      values={PATH_VALUES}
+    />
+  )
+}
+
 const items = [
   {
     icon: Code,
@@ -76,7 +99,8 @@ function Journey() {
 
       {/* Desktop: curved timeline */}
       <div className="relative mx-auto hidden h-[677px] max-w-[1448px] xl:block">
-        <svg
+                <svg
+          data-static
           className="absolute z-0 overflow-visible"
           style={{ left: '6.35%', width: '78.94%', top: -13, height: 602 }}
           viewBox="0 0 1143 602"
@@ -88,20 +112,55 @@ function Journey() {
               <stop stopColor="#ffffff" />
               <stop offset="1" stopColor="#002c85" />
             </linearGradient>
+            <linearGradient id="journey-comet" x1="0" y1="0" x2="1143" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#ffffff" />
+              <stop offset="1" stopColor="#68ffff" />
+            </linearGradient>
           </defs>
+
+          {/* The curve, waving between three shapes */}
           <path
-            d="M0 28.7 C48.2 4 160.2 -31.2 247 53.2 C333.8 137.6 281.3 197.4 241.5 274.7 C201.3 366.7 348.3 560.7 572.5 337.7 C660.5 250.2 627.5 300.7 704 199.2 C740.1 151.3 972.9 87.2 1082.5 227.2 C1192.1 367.2 1128.2 512.5 1082.5 601.7"
+            d={PATH_A}
             stroke="url(#journey-line)"
             strokeWidth="3"
             vectorEffect="non-scaling-stroke"
-          />
+          >
+            <MorphAnimate />
+          </path>
+
+          {/* Two lights travelling along the curve */}
+          <path
+            className="flow-comet"
+            d={PATH_A}
+            pathLength="1000"
+            stroke="url(#journey-comet)"
+            strokeWidth="4"
+            strokeLinecap="round"
+          >
+            <MorphAnimate />
+          </path>
+          <path
+            className="flow-comet"
+            style={{ animationDelay: '-3.5s' }}
+            d={PATH_A}
+            pathLength="1000"
+            stroke="url(#journey-comet)"
+            strokeWidth="3"
+            strokeLinecap="round"
+          >
+            <MorphAnimate />
+          </path>
         </svg>
 
         {/* End dot */}
         <span
-          className="absolute z-0 h-[27px] w-[27px] rounded-full bg-white"
+          data-static
+          className="absolute z-0 h-[27px] w-[27px]"
           style={{ left: '80.25%', top: 571 }}
-        />
+        >
+          <span className="absolute inset-0 animate-ping rounded-full bg-cyan opacity-60" />
+          <span className="absolute inset-0 rounded-full bg-white shadow-[0_0_14px_rgba(104,255,255,0.9)]" />
+        </span>
 
         {items.map((item) => (
           <JourneyCard

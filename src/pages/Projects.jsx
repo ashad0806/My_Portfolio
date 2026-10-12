@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+
 
 const projects = [
   {
@@ -98,7 +100,78 @@ function ProjectCard({ project, style, className = '' }) {
   )
 }
 
+const SVG_TOP = 231.5
+const SVG_H = 1901
+const CARD_W = 30.07 // card width as % of the 1440px container
+const DOT_W = 1.875 // dot width as %
+
+// Dot centre, measured in the curve's own units (same scale as the svg)
+const dotY = (p) => p.dot.top + 13.5 - SVG_TOP
+
+// Short horizontal rung between a card and its dot
+function rungOf(p) {
+  const c = parseFloat(p.card.left)
+  const d = parseFloat(p.dot.left)
+  return c < d
+    ? { left: c + CARD_W, width: d - (c + CARD_W), origin: 'right' }
+    : { left: d + DOT_W, width: c - (d + DOT_W), origin: 'left' }
+}
+
 function Projects() {
+  const boxRef = useRef(null)
+  const pathRef = useRef(null)
+  const headRef = useRef(null)
+  const [active, setActive] = useState(0)
+
+  useEffect(() => {
+    let samples = null
+    let total = 0
+
+    const update = () => {
+      const box = boxRef.current
+      const path = pathRef.current
+      const head = headRef.current
+      if (!box || !path || !head || box.offsetParent === null) return // hidden on phones
+
+      // Measure the curve once, when it is visible
+      if (!samples) {
+        total = path.getTotalLength()
+        if (!total) return
+        samples = []
+        for (let i = 0; i <= 400; i++) {
+          const len = (i / 400) * total
+          const pt = path.getPointAtLength(len)
+          samples.push({ len, x: pt.x, y: pt.y })
+        }
+        path.style.strokeDasharray = `${total}`
+      }
+
+      // The tip of the line follows the scroll position
+      const rect = box.getBoundingClientRect()
+      const tip = window.innerHeight * 0.65 - rect.top - SVG_TOP
+      const y = Math.max(0, Math.min(SVG_H, tip))
+
+      let idx = samples.findIndex((s) => s.y >= y)
+      if (idx === -1) idx = samples.length - 1
+      const s = samples[idx]
+
+      path.style.strokeDashoffset = `${total - s.len}`
+      head.setAttribute('cx', s.x)
+      head.setAttribute('cy', s.y)
+      head.style.opacity = tip <= 0 ? 0 : 1
+
+      setActive(projects.filter((p) => dotY(p) <= y).length)
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
   return (
     <div className="bg-[linear-gradient(180deg,#000000,#00062b,#000b56,#000f70,#001475,#001677,#001879)] px-6 pb-16 pt-8 xl:px-0 xl:pb-[140px] xl:pt-[36px]">
       <div className="mx-auto max-w-[1440px]">
@@ -113,11 +186,11 @@ function Projects() {
           </p>
         </div>
 
-        {/* Desktop: winding timeline */}
-        <div className="relative mt-[51px] hidden h-[2434px] xl:block">
+        {/* Desktop: winding timeline that draws itself as you scroll */}
+        <div ref={boxRef} data-static className="relative mt-[51px] hidden h-[2434px] xl:block">
           <svg
             className="absolute overflow-visible"
-            style={{ left: '40.17%', top: 231.5, width: '19.57%', height: 1901 }}
+            style={{ left: '40.17%', top: SVG_TOP, width: '19.57%', height: SVG_H }}
             viewBox="0 0 281.83 1901"
             preserveAspectRatio="none"
             fill="none"
@@ -131,29 +204,97 @@ function Projects() {
                 <stop offset="1" stopColor="#c7d9ff" />
               </linearGradient>
             </defs>
+
+            {/* Faint track: the whole route */}
             <path
               d="M0 0 C75 32.2 229.8 162 245.3 359.9 C259 533.8 192.9 540.8 100 782.3 C84 823.8 34.2 1050.2 205.2 1349.7 C376.2 1649.2 219 1797.2 138 1901"
               stroke="url(#projects-line)"
+              strokeOpacity="0.22"
               strokeWidth="5"
               vectorEffect="non-scaling-stroke"
             />
+
+            {/* Bright line that grows with the scroll */}
+            <path
+              ref={pathRef}
+              d="M0 0 C75 32.2 229.8 162 245.3 359.9 C259 533.8 192.9 540.8 100 782.3 C84 823.8 34.2 1050.2 205.2 1349.7 C376.2 1649.2 219 1797.2 138 1901"
+              stroke="url(#projects-line)"
+              strokeWidth="5"
+              strokeLinecap="round"
+              style={{
+                strokeDasharray: 100000,
+                strokeDashoffset: 100000,
+                filter: 'drop-shadow(0 0 6px rgba(104,255,255,0.7))',
+              }}
+            />
+
+            {/* Glowing head at the tip */}
+            <circle
+              ref={headRef}
+              r="8"
+              fill="#ffffff"
+              style={{ opacity: 0, filter: 'drop-shadow(0 0 10px #68ffff)' }}
+            />
           </svg>
 
-          {projects.map((p) => (
-            <div key={p.slug}>
-              <span
-                className="absolute h-[27px] w-[27px] rounded-full border border-[#a9c4ff] bg-white"
-                style={p.dot}
-              />
-              <span
-                className="absolute font-poppins text-[42px] font-semibold leading-[47px] text-[#6da5ff]"
-                style={p.yearPos}
-              >
-                {p.year}
-              </span>
-              <ProjectCard project={p} className="absolute" style={p.card} />
-            </div>
-          ))}
+          {projects.map((p, i) => {
+            const on = i < active
+            const rung = rungOf(p)
+            return (
+              <div key={p.slug}>
+                {/* Rung between dot and card */}
+                <span
+                  className="absolute h-[3px] rounded-full bg-[linear-gradient(90deg,#68ffff,#ffffff)] transition-transform duration-700 ease-out"
+                  style={{
+                    left: `${rung.left}%`,
+                    width: `${rung.width}%`,
+                    top: p.dot.top + 12,
+                    transformOrigin: rung.origin,
+                    transform: on ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
+                />
+
+                {/* Dot */}
+                <span
+                  className="absolute h-[27px] w-[27px]"
+                  style={p.dot}
+                >
+                  {on && (
+                    <span className="absolute inset-0 animate-ping rounded-full bg-cyan opacity-60" />
+                  )}
+                  <span
+                    className={`absolute inset-0 rounded-full border transition-all duration-500 ${
+                      on
+                        ? 'scale-110 border-cyan bg-white shadow-[0_0_16px_rgba(104,255,255,0.95)]'
+                        : 'scale-75 border-[#506a9e] bg-[#2c3f6b]'
+                    }`}
+                  />
+                </span>
+
+                {/* Year */}
+                <span
+                  className={`absolute font-poppins text-[42px] font-semibold leading-[47px] transition-all duration-700 ${
+                    on ? 'text-cyan opacity-100' : 'text-[#6da5ff] opacity-30'
+                  }`}
+                  style={p.yearPos}
+                >
+                  {p.year}
+                </span>
+
+                {/* Card steps in when its dot is reached */}
+                <div
+                  className="absolute transition-all duration-700 ease-out"
+                  style={{
+                    ...p.card,
+                    opacity: on ? 1 : 0.18,
+                    transform: on ? 'translateY(0)' : 'translateY(40px)',
+                  }}
+                >
+                  <ProjectCard project={p} />
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Phone and tablet: stacked cards */}
