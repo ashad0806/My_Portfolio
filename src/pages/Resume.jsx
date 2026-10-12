@@ -1,201 +1,303 @@
 import { Link } from 'react-router-dom'
 import {
   ArrowLeft,
-  BookOpen,
+  ArrowUpRight,
   Briefcase,
+  Download,
+  Folder,
+  GraduationCap,
+  Languages,
+  Layers,
   Mail,
   MapPin,
   Phone,
-  Settings,
+  Trophy,
   User,
+  Wrench,
 } from 'lucide-react'
-import { FaFigma } from 'react-icons/fa'
 
-const skills = [
-  { name: 'Python', pct: 90 },
-  { name: 'Java', pct: 60 },
-  { name: 'UI/UX', pct: 80 },
-  { name: 'HTML/CSS', pct: 95 },
-  { name: 'JS', pct: 75 },
-  { name: 'SQL', pct: 90 },
+const summary =
+  'BSc (Hons) IT student specializing in UI/UX design and web development, with hands-on experience in HTML, CSS, JavaScript, Java, Python, database management, and Figma. Experienced in developing responsive web interfaces and technology-based projects, while also bringing professional experience in documentation management, client coordination, and administrative operations. Strong attention to detail, communication, and problem-solving skills with a proven ability to work independently and collaboratively.'
+
+const technical = [
+  { label: 'Programming', items: ['Python', 'Java'] },
+  { label: 'Web Development', items: ['HTML5', 'CSS3', 'JavaScript'] },
+  { label: 'UI/UX', items: ['Figma', 'UI/UX Design', 'Wireframing', 'Prototyping'] },
+  { label: 'Database', items: ['Database Management'] },
 ]
+
+const professional = [
+  'Documentation & Records Management',
+  'Communication & Team Collaboration',
+  'Client Coordination',
+  'Problem Solving & Research',
+  'Attention to Detail & Time Management',
+]
+
+const languages = ['English', 'Nepali', 'Hindi']
 
 const jobs = [
   {
-    title: 'Freelancer Developer',
-    date: '2025 - Present',
+    title: 'Documentation Officer',
+    company: 'Active Synergy Consultants Pvt. Ltd.',
+    place: 'Bagbazar, Kathmandu',
+    date: '9 August 2026 – Present',
     bullets: [
-      'Engineered custom software solutions for diverse clients using Python and modern web frameworks.',
-      'Engineered custom software solutions for diverse clients using Python and modern web frameworks.',
-      'Engineered custom software solutions for diverse clients using Python and modern web frameworks.',
+      'Manage and organize physical and digital documentation, improving retrieval efficiency and filing accuracy.',
+      'Review documents for accuracy, completeness, and compliance with company and client requirements.',
+      'Prepare, format, and update official records, reports, and correspondence.',
+      'Maintain confidentiality and security of sensitive company and client information.',
+      'Coordinate with team members and clients to collect, verify, and process required documentation.',
     ],
   },
   {
     title: 'Documentation Assistant',
-    date: '2025 - Till',
+    company: 'GEC Consultancy',
+    place: 'Kathmandu, Nepal',
+    date: '2026',
     bullets: [
-      'Specialized in technical documentation & compliance reporting, ensuring all projects specification met international standardization requirements.',
-      'Specialized in technical documentation & compliance reporting, ensuring all projects specification met international standardization requirements.',
-      'Specialized in technical documentation & compliance reporting, ensuring all projects specification met international standardization requirements.',
+      'Prepared and organized documentation for students applying for foreign education.',
+      'Ensured accuracy and completeness of application files.',
+      'Assisted students with forms, requirements, and submission processes.',
+      'Strengthened attention to detail and professional communication skills.',
     ],
   },
   {
     title: 'Order Management Assistant',
-    date: '2024 - 2025',
+    company: 'Marketing Neupane Suppliers',
+    place: 'Kathmandu, Nepal',
+    date: '2023',
     bullets: [
-      'Managed high-volume inventory database with 99.99% accuracy using specialized ERP software.',
-      'Streamlined the order fulfillment process reducing turnaround time by 2 days on average.',
-      'Engineered custom software solutions for diverse clients using Python and modern web frameworks.',
+      'Processed orders from multiple merchants, ensuring accuracy and timely delivery.',
+      'Maintained clear communication with clients to confirm requirements and resolve queries.',
     ],
   },
 ]
 
-const education =
-  'BSc. (Hons) in IT\nTechspire College Affiliated to Asia Pacific University of Innovation &Technology\n2025 - Till Date\n\nSchool Leaving Certificate (SLC)\nAadim National College\nNational Examination Board (NEB)\n2023 - 2025\n\nSecondary Education Examination (SEE)\nShree Pashupati Mitra Secondary School\n2023'
-
-const achievements = [
+const projects = [
   {
-    icon: <FaFigma size={25} />,
-    title: 'UI/UX Compilation ',
-    text: 'Completed UI/UX design course & won the competition held on the inter college UI/UX competition.',
+    slug: 'hive-management-system',
+    title: 'HIVE Management System',
+    tech: ['UI/UX Design'],
+    bullets: [
+      'Designed the UI/UX for a college library management platform supporting student applications, table booking, and library operations.',
+      'Focused on usability, navigation, visual hierarchy, and overall user experience.',
+    ],
   },
   {
-    icon: <Settings size={23} />,
-    title: 'AWS Solutions Architect',
-    text: 'Certified expertise in designing distributed systems & scalable cloud infrastructure.',
+    slug: 'employee-management-system',
+    title: 'Employee Management System',
+    tech: ['Python'],
+    bullets: [
+      'Developed a terminal-based employee management system using Python.',
+      'Implemented employee record management and core data-handling functionalities.',
+    ],
+  },
+  {
+    slug: 'food-fest-2026',
+    title: 'Food-Fest 2026 Website',
+    tech: ['HTML', 'CSS', 'JavaScript'],
+    bullets: [
+      'Developed a responsive front-end website for Food-Fest 2026, a conceptual culinary festival website.',
+      'Designed and coded the website’s pages and interactive elements using HTML, CSS, and JavaScript.',
+    ],
+  },
+  {
+    slug: 'portfolio-design',
+    title: 'Portfolio Design (Website)',
+    tech: ['Figma'],
+    bullets: [
+      'A complete website design created in Figma, spanning 13 pages/frames.',
+      'Sole designer, covering the full-page set from concept through final frames.',
+    ],
+  },
+]
+
+const education = [
+  {
+    title: 'Bachelor of Science (Honours) in Information Technology [BSc (Hons) IT]',
+    school: 'Techspire College (under Asia Pacific University of Technology and Innovation)',
+    place: 'New Baneshwor, Kathmandu',
+    pills: ['2025 – Present'],
+  },
+  {
+    title: 'S.L.C. (School Leaving Certificate)',
+    school: 'Aadim National College',
+    place: 'Chuchepati, Chabahil, Kathmandu',
+    pills: ['2025', 'GPA: 3.50/4.00'],
+  },
+  {
+    title: 'S.E.E. (Secondary Education Examination)',
+    school: 'Shree Pashupati Mitra Secondary School',
+    place: 'Chabahil Stupa, Kathmandu',
+    pills: ['2023', 'GPA: 2.80/4.00'],
+  },
+]
+
+const awards = [
+  {
+    title: 'Mr. & Ms. Teen Super Model 2025 — Season 5',
+    wins: ['Best Performance'],
+  },
+  {
+    title: 'Glam Model Voux 2025 — Season 4',
+    wins: ['2nd Runner-Up', 'Most Confidence', 'Most Talent'],
+  },
+  {
+    title: 'Mr. & Ms. Fresher Show, Aadim College 2025',
+    wins: ['1st Runner-Up', 'Best Walk'],
   },
 ]
 
 const card =
-  'rounded-[20px] border-2 border-transparent bg-[linear-gradient(180deg,#0c3587,#000000)_padding-box,linear-gradient(135deg,#ffffff,#68ffff)_border-box]'
-const cardDark =
   'rounded-[20px] border-2 border-transparent bg-[linear-gradient(180deg,#0c3587,#030d21)_padding-box,linear-gradient(135deg,#ffffff,#68ffff)_border-box]'
 
-function MiniGauge({ name, pct }) {
-  const r = 43
-  const c = 2 * Math.PI * r
+function SectionTitle({ icon: Icon, children }) {
   return (
-    <div className="flex flex-col items-center">
-      <span className="font-sans text-lg font-semibold leading-[22px]">{pct}%</span>
-      <div className="relative mt-1.5 h-[101px] w-[101px]">
-        <svg viewBox="0 0 101 101" className="h-full w-full -rotate-90">
-          <circle cx="50.5" cy="50.5" r={r} fill="none" stroke="#0055ff" strokeWidth="15" />
-          <circle
-            cx="50.5"
-            cy="50.5"
-            r={r}
-            fill="none"
-            stroke="#68ffff"
-            strokeWidth="15"
-            strokeDasharray={`${(pct / 100) * c} ${c}`}
-          />
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center font-sans text-[13px] font-semibold">
-          {name}
-        </span>
-      </div>
+    <div className="flex items-center gap-[13px]">
+      <Icon size={36} className="shrink-0 text-cyan" />
+      <h2 className="font-sans text-2xl font-bold xl:text-[28px] xl:leading-[34px]">{children}</h2>
     </div>
   )
 }
 
-function CardTitle({ icon: Icon, children }) {
+function Chip({ children }) {
   return (
-    <div className="flex items-center gap-[13px]">
-      <Icon size={40} className="shrink-0" />
-      <h2 className="font-sans text-2xl font-bold xl:text-[30px] xl:leading-[36px]">{children}</h2>
-    </div>
+    <span className="rounded-full bg-royal px-3 py-1 font-mono text-[15px] leading-5">
+      {children}
+    </span>
+  )
+}
+
+function Dot() {
+  return (
+    <span className="absolute left-[7px] top-[7px] h-[17px] w-[17px] rounded-full border-2 border-white bg-cyan shadow-[0_0_10px_rgba(104,255,255,0.8)] xl:left-[13px]" />
+  )
+}
+
+function Line() {
+  return (
+    <span className="absolute bottom-[-7px] left-[14px] top-[24px] w-[3px] rounded-full bg-[linear-gradient(180deg,#68ffff,#3b6dff)] xl:left-[20px]" />
   )
 }
 
 function Resume() {
   return (
-    <div className="bg-[linear-gradient(180deg,#000000,#152e5e,#000000)] px-6 pb-16 pt-10 xl:pb-[86px] xl:pt-[82px]">
-      <div className="mx-auto grid max-w-[1246px] items-start gap-8 xl:grid-cols-[400px_1fr] xl:gap-[47px]">
-        {/* Left column */}
-        <div className="flex flex-col gap-[49px]">
+    <div className="bg-[linear-gradient(180deg,#000000,#152e5e,#000000)] px-6 pb-16 pt-10 xl:pb-[86px] xl:pt-[70px]">
+      <div className="mx-auto grid max-w-[1246px] items-start gap-8 xl:grid-cols-[390px_1fr] xl:gap-[44px]">
+        {/* ===== Left column (stays in view on desktop) ===== */}
+        <aside className="flex flex-col gap-8 xl:sticky xl:top-[112px]">
           {/* Profile */}
-          <div className={`${cardDark} px-6 pb-9 pt-[39px] xl:px-[41px] xl:min-h-[511px]`}>
+          <div className={`${card} px-6 pb-8 pt-[34px] xl:px-[34px]`}>
             <img
               src="/images/resume-photo.jpg"
               alt="Ashad Alam"
-              className="h-[157px] w-[157px] rounded-full border-2 border-white object-cover object-top"
+              className="h-[140px] w-[140px] rounded-full border-2 border-white object-cover object-top"
             />
-            <h1 className="mt-[24px] font-sans text-3xl font-bold xl:text-[34px] xl:leading-[41px]">
+            <h1 className="mt-5 font-sans text-3xl font-bold xl:text-[34px] xl:leading-[41px]">
               Ashad Alam
             </h1>
-            <p className="mt-2 font-sans text-base font-semibold leading-[19px] text-cyan">
-              Junior Designer &amp; Python Developer
+            <p className="mt-2 font-sans text-[15px] font-semibold leading-[22px] text-cyan">
+              BSc (Hons) IT Student | UI/UX Designer | Web Developer
             </p>
 
-            <div className="mt-[52px] flex flex-col gap-[26px] font-sans text-[15px] font-medium">
-              <a href="mailto:ashadalam2006@gmail.com" className="flex items-center gap-[19px] hover:underline">
-                <Mail size={22} className="shrink-0 text-[#0055ff]" />
+            <div className="mt-7 flex flex-col gap-[18px] font-sans text-[15px] font-medium">
+              <a href="mailto:ashadalam2006@gmail.com" className="flex items-center gap-4 break-all hover:underline">
+                <Mail size={21} className="shrink-0 text-[#4d86ff]" />
                 ashadalam2006@gmail.com
               </a>
-              <a href="tel:+9779761831569" className="flex items-center gap-[19px] hover:underline">
-                <Phone size={22} className="shrink-0 text-[#0055ff]" />
+              <a href="tel:+9779761831569" className="flex items-center gap-4 hover:underline">
+                <Phone size={21} className="shrink-0 text-[#4d86ff]" />
                 +977 9761831569
               </a>
-              <p className="flex items-center gap-[19px]">
-                <MapPin size={22} className="shrink-0 text-[#0055ff]" />
-                Kathmandu, Nepal
+              <p className="flex items-center gap-4">
+                <MapPin size={21} className="shrink-0 text-[#4d86ff]" />
+                Chabahil, Kathmandu, Nepal
               </p>
             </div>
+
+            <a
+              href="/Ashad_Alam_CV.pdf"
+              download
+              className="mt-8 flex h-[52px] items-center justify-center gap-3 rounded-[14px] bg-[linear-gradient(180deg,#4482ff,#0038a9)] font-sans text-lg font-bold shadow-[inset_0_0_12px_rgba(255,255,255,0.3)] transition hover:brightness-125"
+            >
+              <Download size={22} />
+              Download CV
+            </a>
           </div>
 
-          {/* Technical expertise */}
-          <div className={`${cardDark} px-6 pb-8 pt-[44px] xl:min-h-[656px]`}>
-            <h2 className="text-center font-sans text-2xl font-bold xl:text-[24px] xl:leading-[37px]">
-              Technical Expertise
-            </h2>
-            <div className="mt-[52px] grid grid-cols-2 gap-x-4 gap-y-[39px]">
-              {skills.map((s) => (
-                <MiniGauge key={s.name} {...s} />
+          {/* Core skills */}
+          <div className={`${card} px-6 pb-8 pt-[30px] xl:px-[34px]`}>
+            <SectionTitle icon={Wrench}>Core Skills</SectionTitle>
+
+            <p className="mt-6 font-sans text-sm font-bold uppercase tracking-[0.08em] text-sky">
+              Technical Skills
+            </p>
+            <div className="mt-3 flex flex-col gap-4">
+              {technical.map((g) => (
+                <div key={g.label}>
+                  <p className="font-sans text-[15px] font-semibold leading-6">{g.label}</p>
+                  <div className="mt-2 flex flex-wrap gap-2">
+                    {g.items.map((i) => (
+                      <Chip key={i}>{i}</Chip>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-7 font-sans text-sm font-bold uppercase tracking-[0.08em] text-sky">
+              Professional Skills
+            </p>
+            <ul className="mt-3 flex flex-col gap-3">
+              {professional.map((p) => (
+                <li key={p} className="relative pl-6 font-sans text-[15px] leading-6">
+                  <span className="absolute left-1 top-[9px] h-[8px] w-[8px] rounded-full bg-cyan" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Languages */}
+          <div className={`${card} px-6 pb-8 pt-[30px] xl:px-[34px]`}>
+            <SectionTitle icon={Languages}>Languages</SectionTitle>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {languages.map((l) => (
+                <span
+                  key={l}
+                  className="rounded-full bg-[#013190] px-5 py-2 font-sans text-base font-semibold"
+                >
+                  {l}
+                </span>
               ))}
             </div>
           </div>
-        </div>
+        </aside>
 
-        {/* Right column */}
-        <div className="flex flex-col gap-[48px]">
+        {/* ===== Right column ===== */}
+        <div className="flex flex-col gap-8">
           {/* Summary */}
-          <div className={`${card} px-6 pb-8 pt-[39px] xl:min-h-[281px] xl:px-[38px]`}>
-            <div className="flex items-center gap-[13px] xl:pl-[16px]">
-              <User size={40} className="shrink-0" />
-              <h2 className="font-sans text-2xl font-bold xl:text-[30px] xl:leading-[36px]">
-                Professional Summary
-              </h2>
-            </div>
-            <p className="mt-[30px] max-w-[720px] font-sans text-base xl:text-xl xl:leading-6">
-              Highly motivated &amp; detail-oriented Junior Designer with over 1 year of experience
-              building/making scalable designs. Expert in architecting clean, maintainable
-              codebases using Python &amp; Java. Proven track record in leading cross-functional
-              teams &amp; delivering user-centric UI/UX solutions that drive business growth &amp;
-              user engagement.
-            </p>
+          <div className={`${card} px-6 pb-9 pt-[32px] xl:px-[38px]`}>
+            <SectionTitle icon={User}>Professional Summary</SectionTitle>
+            <p className="mt-6 font-sans text-base leading-[28px] xl:text-[17px]">{summary}</p>
           </div>
 
           {/* Experience */}
-          <div className={`${card} px-6 pb-12 pt-[37px] xl:px-[38px]`}>
-            <CardTitle icon={Briefcase}>Experience</CardTitle>
+          <div className={`${card} px-6 pb-12 pt-[32px] xl:px-[38px]`}>
+            <SectionTitle icon={Briefcase}>Professional Experience</SectionTitle>
 
-            <div className="mt-[40px]">
+            <div className="mt-[36px]">
               {jobs.map((job, i) => {
                 const last = i === jobs.length - 1
                 return (
                   <div
                     key={job.title}
-                    className={`relative pl-[44px] xl:pl-[56px] ${last ? '' : 'pb-[52px]'}`}
+                    className={`relative pl-[44px] xl:pl-[56px] ${last ? '' : 'pb-[48px]'}`}
                   >
-                    {/* Line down to the next dot */}
-                    {!last && (
-                      <span className="absolute bottom-[-6px] left-[14px] top-[23px] w-[3px] rounded-full bg-[linear-gradient(180deg,#68ffff,#3b6dff)] xl:left-[20px]" />
-                    )}
+                    {!last && <Line />}
+                    <Dot />
 
-                    {/* Dot */}
-                    <span className="absolute left-[7px] top-[6px] h-[17px] w-[17px] rounded-full border-2 border-white bg-cyan shadow-[0_0_10px_rgba(104,255,255,0.8)] xl:left-[13px]" />
-
-                    {/* Title and date */}
                     <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                       <h3 className="font-job text-xl leading-[30px] tracking-[0.01em] xl:text-[22px]">
                         {job.title}
@@ -204,9 +306,12 @@ function Resume() {
                         {job.date}
                       </span>
                     </div>
+                    <p className="mt-1 font-sans text-[16px] font-semibold leading-6 text-cyan">
+                      {job.company}
+                    </p>
+                    <p className="font-sans text-[14px] leading-6 text-[#c9d6f2]">{job.place}</p>
 
-                    {/* Bullets */}
-                    <ul className="mt-[20px] flex flex-col gap-[14px]">
+                    <ul className="mt-[18px] flex flex-col gap-[12px]">
                       {job.bullets.map((b, bi) => (
                         <li
                           key={bi}
@@ -223,31 +328,116 @@ function Resume() {
             </div>
           </div>
 
-          {/* Education + Achievements */}
-          <div className="grid gap-[48px] md:grid-cols-2 xl:grid-cols-[375fr_378fr] xl:gap-[46px]">
-            <div className={`${card} px-6 pb-8 pt-[31px] xl:min-h-[366px] xl:px-[24px]`}>
-              <CardTitle icon={BookOpen}>Education</CardTitle>
-              <p className="mt-[24px] whitespace-pre-line font-sans text-[15px] font-bold leading-[18px] xl:pl-[5px]">
-                {education}
-              </p>
-            </div>
+          {/* Projects */}
+          <div className={`${card} px-6 pb-10 pt-[32px] xl:px-[38px]`}>
+            <SectionTitle icon={Folder}>Projects</SectionTitle>
 
-            <div className={`${card} px-6 pb-8 pt-[31px] xl:min-h-[366px] xl:px-[24px]`}>
-              <CardTitle icon={BookOpen}>Achievements</CardTitle>
-              <div className="mt-[34px] flex flex-col gap-[27px]">
-                {achievements.map((a) => (
-                  <div
-                    key={a.title}
-                    className="min-h-[96px] rounded-[10px] bg-[linear-gradient(135deg,#0c3587,#2057c5)] px-[27px] py-[12px] xl:px-[27px]"
-                  >
-                    <div className="flex items-center gap-[7px]">
-                      {a.icon}
-                      <h3 className="font-calibri text-xl font-bold leading-6">{a.title}</h3>
-                    </div>
-                    <p className="mt-[6px] font-calibri text-[13px] leading-4">{a.text}</p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {projects.map((p) => (
+                <article
+                  key={p.slug}
+                  className="flex flex-col rounded-[16px] bg-[linear-gradient(135deg,#0c3587,#1a4fc0)] px-6 pb-6 pt-6"
+                >
+                  <h3 className="font-card text-[21px] leading-[28px]">{p.title}</h3>
+                  <ul className="mt-4 flex flex-col gap-[10px]">
+                    {p.bullets.map((b, bi) => (
+                      <li
+                        key={bi}
+                        className="relative pl-[22px] font-sans text-[14px] leading-[22px]"
+                      >
+                        <span className="absolute left-[3px] top-[8px] h-[7px] w-[7px] rounded-full bg-cyan" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
+                    <span className="font-sans text-[13px] font-bold uppercase tracking-[0.06em] text-sky">
+                      Technologies:
+                    </span>
+                    {p.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-sky px-3 py-0.5 font-mono text-[14px] text-[#001643]"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
-                ))}
-              </div>
+
+                  <Link
+                    to={`/projects/${p.slug}`}
+                    className="mt-auto flex items-center gap-1 pt-5 font-card text-[15px] text-cyan hover:underline"
+                  >
+                    View Case Study
+                    <ArrowUpRight size={18} />
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div className={`${card} px-6 pb-12 pt-[32px] xl:px-[38px]`}>
+            <SectionTitle icon={GraduationCap}>Education</SectionTitle>
+
+            <div className="mt-[36px]">
+              {education.map((e, i) => {
+                const last = i === education.length - 1
+                return (
+                  <div
+                    key={e.title}
+                    className={`relative pl-[44px] xl:pl-[56px] ${last ? '' : 'pb-[40px]'}`}
+                  >
+                    {!last && <Line />}
+                    <Dot />
+                    <h3 className="font-job text-lg leading-[28px] tracking-[0.01em] xl:text-[20px]">
+                      {e.title}
+                    </h3>
+                    <p className="mt-1 font-sans text-[16px] font-semibold leading-6 text-cyan">
+                      {e.school}
+                    </p>
+                    <p className="font-sans text-[14px] leading-6 text-[#c9d6f2]">{e.place}</p>
+                    <div className="mt-3 flex flex-wrap gap-3">
+                      {e.pills.map((p) => (
+                        <span
+                          key={p}
+                          className="rounded-[20px] bg-[#0023ae] px-3 py-1 font-date text-[15px] leading-5"
+                        >
+                          {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Awards */}
+          <div className={`${card} px-6 pb-10 pt-[32px] xl:px-[38px]`}>
+            <SectionTitle icon={Trophy}>Awards &amp; Achievements</SectionTitle>
+
+            <div className="mt-8 flex flex-col gap-5">
+              {awards.map((a) => (
+                <div
+                  key={a.title}
+                  className="rounded-[14px] bg-[linear-gradient(135deg,#0c3587,#2057c5)] px-6 py-5"
+                >
+                  <h3 className="font-calibri text-xl font-bold leading-7">{a.title}</h3>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {a.wins.map((w) => (
+                      <span
+                        key={w}
+                        className="flex items-center gap-2 rounded-full bg-black/30 px-3 py-1 font-sans text-[14px] font-semibold"
+                      >
+                        <Layers size={14} className="text-cyan" />
+                        {w}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -256,7 +446,7 @@ function Resume() {
       {/* Go back */}
       <Link
         to="/"
-        className="mx-auto mt-12 flex h-[69px] w-[199px] items-center justify-center gap-3 rounded-[20px] bg-[linear-gradient(180deg,#013190,#152e5e)] font-sans text-[26px] font-bold shadow-[inset_0_0_14px_rgba(255,255,255,0.3)] transition hover:brightness-125 xl:mt-[86px]"
+        className="mx-auto mt-12 flex h-[69px] w-[199px] items-center justify-center gap-3 rounded-[20px] bg-[linear-gradient(180deg,#013190,#152e5e)] font-sans text-[26px] font-bold shadow-[inset_0_0_14px_rgba(255,255,255,0.3)] transition hover:brightness-125 xl:mt-[80px]"
       >
         <ArrowLeft size={30} />
         Go Back
