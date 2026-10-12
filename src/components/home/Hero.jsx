@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import Bubbles from '../Bubbles'
 
 function Dot() {
   return <span className="h-[13px] w-[13px] shrink-0 rounded-full bg-[#6ea5ff]" />
@@ -7,8 +8,9 @@ function Dot() {
 
 function Hero() {
   return (
-    <section className="bg-[linear-gradient(180deg,#001530_0%,#003e89_50%,#000000_100%)]">
-      <div className="mx-auto flex min-h-[701px] max-w-[1440px] flex-col-reverse items-center justify-center gap-12 px-6 py-16 lg:flex-row lg:justify-between lg:px-12">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#001530_0%,#003e89_50%,#000000_100%)]">
+      <Bubbles variant="hero" count={16} minSize={14} maxSize={64} />      
+      <div className="relative z-10 mx-auto flex min-h-[701px] max-w-[1440px] flex-col-reverse items-center justify-center gap-12 px-6 py-16 lg:flex-row lg:justify-between lg:px-12">
         {/* Text side */}
         <div className="max-w-[714px]">
           {/* Availability badge */}

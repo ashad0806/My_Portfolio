@@ -13,6 +13,7 @@ import Skills from './pages/Skills'
 import Journey from './pages/Journey'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
+import BackgroundFX from './components/BackgroundFX'
 
 function NotFound() {
   return (
@@ -31,6 +32,8 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <BackgroundFX />
+      <ScrollToTop />
       <ScrollToTop />
       <ScrollProgress />
       <Navbar />
