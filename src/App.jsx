@@ -14,6 +14,7 @@ import Journey from './pages/Journey'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
 import BackgroundFX from './components/BackgroundFX'
+import CustomCursor from './components/CustomCursor'
 
 function NotFound() {
   return (
@@ -33,7 +34,7 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <BackgroundFX />
-      <ScrollToTop />
+      <CustomCursor />
       <ScrollToTop />
       <ScrollProgress />
       <Navbar />

@@ -294,3 +294,53 @@ main :is(a, button)[class*="rounded-"]:active {
     opacity: 0;
   }
 }
+
+/* ===== Step 22: custom cursor ===== */
+html.has-cursor,
+html.has-cursor *:not(input):not(textarea) {
+  cursor: none !important;
+}
+
+.cursor-ring-inner {
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease,
+    opacity 0.25s ease;
+}
+.cursor-ring[data-state='link'] .cursor-ring-inner {
+  transform: scale(1.8);
+  background-color: rgba(104, 255, 255, 0.14);
+  border-color: #68ffff;
+}
+.cursor-ring[data-state='card'] .cursor-ring-inner {
+  transform: scale(1.35);
+  background-color: rgba(0, 85, 255, 0.1);
+}
+.cursor-ring[data-state='text'] .cursor-ring-inner {
+  opacity: 0;
+}
+.cursor-ring[data-down='1'] .cursor-ring-inner {
+  transform: scale(0.65);
+}
+.cursor-dot[data-state='link'] {
+  opacity: 0.35 !important;
+}
+.cursor-dot[data-state='text'] {
+  opacity: 0 !important;
+}
+
+.cursor-ripple {
+  position: fixed;
+  z-index: 9998;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 9999px;
+  border: 2px solid #68ffff;
+  pointer-events: none;
+  animation: cursor-ripple 0.6s ease-out forwards;
+}
+@keyframes cursor-ripple {
+  to {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
