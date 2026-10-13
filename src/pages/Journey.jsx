@@ -1,47 +1,47 @@
 import { Link } from 'react-router-dom'
-import { Briefcase, BookOpen, Code, FileText, MessageSquare, ArrowLeft } from 'lucide-react'
+import { Briefcase, BookOpen, ClipboardList, FileText, Package, ArrowLeft } from 'lucide-react'
 
 const work = [
   {
-    icon: Code,
-    title: 'Freelancer Developer',
-    date: '2025 - Present',
-    text: 'Engineered custom software solutions for diverse clients using Python and modern web frameworks.\n\nOptimized legacy codebase resulting in a 40% improvement in processing speeds for client data pipelines.',
-  },
-  {
     icon: FileText,
-    title: 'Documentation Assistant',
-    date: '2024 - 2025',
-    text: 'Specialized in technical documentation & compliance reporting, ensuring all projects specification met international standardization requirements.',
+    title: 'Documentation Officer',
+    date: 'Aug 2026 - Present',
+    text: 'Active Synergy Consultants Pvt. Ltd., Bagbazar, Kathmandu.\nManage and organize physical and digital documentation, improving retrieval efficiency and filing accuracy.\nReview documents for accuracy and compliance, and prepare official records, reports and correspondence.\nCoordinate with team members and clients to collect, verify and process required documentation.',
   },
   {
-    icon: MessageSquare,
+    icon: ClipboardList,
+    title: 'Documentation Assistant',
+    date: '2026',
+    text: 'GEC Consultancy, Kathmandu.\nPrepared and organized documentation for students applying for foreign education.\nEnsured accuracy and completeness of application files and assisted students with forms and submission processes.',
+  },
+  {
+    icon: Package,
     title: 'Order Management Assistant',
-    date: '2024 - 2025',
-    text: 'Managed high-volume inventory database with 99.99% accuracy using specialized ERP software.\nStreamlined the order fulfillment process reducing turnaround time by 2 days on average. ',
+    date: '2023',
+    text: 'Marketing Neupane Suppliers, Kathmandu.\nProcessed orders from multiple merchants, ensuring accuracy and timely delivery.\nMaintained clear communication with clients to confirm requirements and resolve queries.',
   },
 ]
 
 const education = [
   {
     title: 'B.Sc. Hons in IT',
-    school: 'Techspire College',
-    text: 'Specialized in Software Engineering & Database \nManagement. Currently persuing with honors, focused on scalable architecture & Python automation.',
+    school: 'Techspire College (Asia Pacific University)',
+    text: 'Bachelor of Science (Honours) in Information Technology, with a focus on UI/UX design, web development and Python.\nCurrently pursuing.',
     pills: ['2025 - present'],
   },
   {
-    title: '+2 Level Studies (SLC)',
+    title: 'S.L.C. (+2 Level Studies)',
     school: 'Aadim National College',
-    text: 'Completed +2 level studies in Management faculty with \nBasic Mathematics & Computer Science. Well known &\none of the most Disciplined students in the college.',
-    pills: ['2023 - 2025', 'GPA - 3.50'],
+    text: 'Completed +2 level studies in the Management faculty with \nBasic Mathematics & Computer Science. Well known &\none of the most Disciplined students in the college.',
+    pills: ['2025', 'GPA - 3.50'],
   },
 ]
 
 const see = {
   title: 'SEE',
   school: 'Shree Pashupati Mitra Secondary School',
-  text: 'A student full of passion in computer science and mathematics. Chose Optional Mathematics & Computer Science in school so can I could get a proper base in this sector.',
-  pills: ['2023', 'GPA - 3.80'],
+  text: 'A student full of passion in computer science and mathematics. Chose Optional Mathematics & Computer Science in school so I could get a proper base in this sector.',
+  pills: ['2023', 'GPA - 2.80'],
 }
 
 function Pill({ children }) {
