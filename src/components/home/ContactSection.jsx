@@ -4,13 +4,15 @@ import { FaLinkedinIn, FaGithub, FaInstagram, FaFacebookF } from 'react-icons/fa
 
 const EMAIL = 'ashadalam2006@gmail.com'
 
+// Paste the access key from your Web3Forms email between the quotes
+const ACCESS_KEY = 'PASTE_YOUR_ACCESS_KEY_HERE'
+
 const info = [
   { icon: Mail, label: 'EMAIL ME', value: EMAIL, href: `mailto:${EMAIL}` },
   { icon: Phone, label: 'CALL ME', value: '+977 9761831569', href: 'tel:+9779761831569' },
   { icon: MapPin, label: 'LOCATION', value: 'Chabahil, Kathmandu' },
 ]
 
-// Replace the '#' links with your real profile links
 const socials = [
   { icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/in/ashad-alam-09723636a/' },
   { icon: FaGithub, label: 'GitHub', href: 'https://github.com/ashad0806' },
@@ -18,25 +20,61 @@ const socials = [
   { icon: FaFacebookF, label: 'Facebook', href: 'https://www.facebook.com/ashad.aalam.71' },
 ]
 
+const emptyForm = { name: '', email: '', subject: '', message: '' }
+
 const inputClass =
-  'h-[51px] w-full rounded-[10px] bg-navy px-[13px] font-card text-lg text-white outline-none placeholder:text-muted focus:ring-2 focus:ring-sky sm:text-[21px]'
+  'h-[51px] w-full rounded-[10px] bg-navy px-[13px] font-card text-lg text-white outline-none placeholder:text-muted focus:ring-2 focus:ring-sky disabled:opacity-60 sm:text-[21px]'
 
 function ContactSection({
   bgClass = 'bg-black',
   paddingClass = 'pb-16 pt-12 xl:pb-[112px] xl:pt-[76px]',
 }) {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [form, setForm] = useState(emptyForm)
+  const [bot, setBot] = useState(false) // hidden spam trap, real visitors never touch it
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value })
+    if (status !== 'sending') setStatus('idle')
+  }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const body = `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(
-      form.subject,
-    )}&body=${encodeURIComponent(body)}`
-    setSent(true)
+    if (status === 'sending') return
+
+    const ACCESS_KEY = '668e6f38-dd7c-453c-8894-ed92a7f025f5'
+
+    setStatus('sending')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY.trim(),
+          subject: `Portfolio message: ${form.subject}`,
+          from_name: form.name,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          botcheck: bot,
+        }),
+      })
+      const data = await res.json()
+
+      if (data.success) {
+        setStatus('success')
+        setForm(emptyForm)
+      } else {
+        setErrorMsg(data.message || 'Something went wrong. Please try again.')
+        setStatus('error')
+      }
+    } catch {
+      setErrorMsg('Could not reach the server. Check your internet connection and try again.')
+      setStatus('error')
+    }
   }
 
   const handleShare = async () => {
@@ -52,6 +90,8 @@ function ContactSection({
       alert('Link copied!')
     }
   }
+
+  const sending = status === 'sending'
 
   return (
     <section className={`${bgClass} px-6 xl:px-[58px] ${paddingClass}`}>
@@ -134,6 +174,17 @@ function ContactSection({
             onSubmit={handleSubmit}
             className="w-full rounded-[20px] bg-[#002162] px-[26px] pb-[62px] pt-[38px]"
           >
+            {/* Hidden spam trap */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              checked={bot}
+              onChange={(e) => setBot(e.target.checked)}
+            />
+
             <div className="grid gap-7 sm:grid-cols-2 sm:gap-6">
               <div>
                 <label htmlFor="name" className="block font-card text-lg leading-[26px] sm:text-[21px]">
@@ -143,6 +194,7 @@ function ContactSection({
                   id="name"
                   name="name"
                   required
+                  disabled={sending}
                   value={form.name}
                   onChange={handleChange}
                   placeholder="Enter your full name..........."
@@ -158,6 +210,7 @@ function ContactSection({
                   name="email"
                   type="email"
                   required
+                  disabled={sending}
                   value={form.email}
                   onChange={handleChange}
                   placeholder="Enter your email address..........."
@@ -174,6 +227,7 @@ function ContactSection({
                 id="subject"
                 name="subject"
                 required
+                disabled={sending}
                 value={form.subject}
                 onChange={handleChange}
                 placeholder="Project Inquiry..........."
@@ -189,6 +243,7 @@ function ContactSection({
                 id="message"
                 name="message"
                 required
+                disabled={sending}
                 value={form.message}
                 onChange={handleChange}
                 placeholder="Tell me about your project............"
@@ -198,15 +253,27 @@ function ContactSection({
 
             <button
               type="submit"
-              className="mt-14 flex h-[70px] w-full items-center justify-center gap-5 rounded-[10px] bg-black font-fancy text-[25px] transition hover:bg-[#111]"
+              disabled={sending}
+              className="mt-14 flex h-[70px] w-full items-center justify-center gap-5 rounded-[10px] bg-black font-fancy text-[25px] transition hover:bg-[#111] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Send Message
+              {sending ? 'Sending...' : 'Send Message'}
               <Send size={26} />
             </button>
 
-            {sent && (
-              <p className="mt-4 text-center font-card text-base text-cyan">
-                Your email app should open with the message ready to send.
+            {status === 'success' && (
+              <p
+                role="status"
+                className="mt-5 rounded-[10px] bg-[#00ffe1]/10 px-4 py-3 text-center font-card text-base text-aqua"
+              >
+                Thank you! Your message has been sent. I&apos;ll get back to you soon.
+              </p>
+            )}
+            {status === 'error' && (
+              <p
+                role="alert"
+                className="mt-5 rounded-[10px] bg-[#ff4d4d]/10 px-4 py-3 text-center font-card text-base text-[#ff9b9b]"
+              >
+                {errorMsg} You can also email me directly at {EMAIL}.
               </p>
             )}
           </form>
