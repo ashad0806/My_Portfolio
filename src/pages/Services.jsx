@@ -66,7 +66,7 @@ const faqs = [
     a: 'Yes. I can review your current project, fix issues, improve the design or add new features. Tell me what you already have and we will agree on the next steps.',
   },
   {
-    q: 'What is you typical turnaround time?',
+    q: 'What is your typical turnaround time?',
     a: 'It depends on the service and scope. Most projects take between one day and eight weeks, and the estimates on each service card above are a good guide. We confirm the timeline during the consultation.',
   },
   {

@@ -55,7 +55,7 @@ function Contact() {
           <p className="relative max-w-[651px] px-8 pt-10 font-heading text-2xl leading-tight drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] sm:text-[29px] xl:px-0 xl:pl-[44px] xl:pt-[43px]">
             Available for remote work worldwide &amp; in-person{' '}
             <br className="hidden xl:block" />
-            meetings in the Bay Area
+            meetings in Kathmandu
           </p>
         </div>
       </section>
