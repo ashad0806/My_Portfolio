@@ -591,3 +591,18 @@ html.light [data-keep] {
     animation: none !important;
   }
 }
+
+/* Typewriter caret */
+.typewriter-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.95em;
+  margin-left: 4px;
+  vertical-align: -0.08em;
+  background: #6ea5ff;
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}

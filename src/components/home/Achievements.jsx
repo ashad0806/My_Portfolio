@@ -1,4 +1,5 @@
 import { BookOpen, Layers, Settings } from 'lucide-react'
+import StatsStrip from './StatsStrip'
 
 const achievements = [
   {
@@ -31,6 +32,8 @@ function Achievements() {
         </p>
       </div>
 
+      <StatsStrip />
+      
       {/* Cards */}
       <div className="mx-auto mt-12 grid max-w-[1448px] gap-8 md:grid-cols-2 xl:mt-[104px] xl:grid-cols-3 xl:px-[56px]">
         {achievements.map(({ icon: Icon, title, text }) => (

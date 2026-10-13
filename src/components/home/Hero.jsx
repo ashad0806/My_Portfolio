@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Bubbles from '../Bubbles'
 import PhotoFX from '../PhotoFX'
+import Typewriter from '../Typewriter'
 
 function Dot() {
   return <span className="h-[13px] w-[13px] shrink-0 rounded-full bg-[#6ea5ff]" />
@@ -32,13 +33,7 @@ function Hero() {
 
           {/* Roles */}
           <div className="mt-3 font-sans text-xl sm:text-3xl lg:text-[37px] lg:leading-[45px]">
-            <div className="flex flex-wrap items-center gap-3">
-              <span>UI/UX Designer</span>
-              <Dot />
-              <span>Web Developer</span>
-              <Dot />
-            </div>
-            <div>Python Developer</div>
+            <Typewriter />
           </div>
 
           {/* Description */}
