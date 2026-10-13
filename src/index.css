@@ -358,3 +358,236 @@ html.light video,
 html.light [data-keep] {
   filter: invert(1) hue-rotate(180deg);
 }
+
+/* ===== Step 24: photo effects ===== */
+@property --pfx-a {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.photo-fx {
+  position: relative;
+  display: block;
+  perspective: 900px;
+  cursor: pointer;
+  animation: pfx-float 6s ease-in-out infinite;
+}
+.photo-fx-circle,
+.photo-fx-circle .photo-fx-card,
+.photo-fx-circle .photo-fx-ring,
+.photo-fx-circle .photo-fx-glow,
+.photo-fx-circle .photo-fx-burst {
+  border-radius: 9999px;
+}
+.photo-fx-card,
+.photo-fx-card ~ *,
+.photo-fx-ring,
+.photo-fx-glow,
+.photo-fx-burst {
+  border-radius: 30px;
+}
+.photo-fx-circle .photo-fx-card,
+.photo-fx-circle .photo-fx-ring,
+.photo-fx-circle .photo-fx-glow,
+.photo-fx-circle .photo-fx-burst {
+  border-radius: 9999px;
+}
+
+/* Spinning gradient ring */
+.photo-fx-ring {
+  position: absolute;
+  inset: -6px;
+  background: conic-gradient(
+    from var(--pfx-a),
+    #00e5ff,
+    #0055ff,
+    #ffffff,
+    #3b2bff,
+    #00e5ff
+  );
+  animation: pfx-spin 6s linear infinite;
+  transition: transform 0.4s ease;
+}
+/* Blurred copy = glow */
+.photo-fx-glow {
+  position: absolute;
+  inset: -14px;
+  background: conic-gradient(from var(--pfx-a), #00e5ff, #0055ff, #7a5cff, #00e5ff);
+  filter: blur(26px);
+  opacity: 0.5;
+  animation: pfx-spin 6s linear infinite, pfx-pulse 3s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+}
+.photo-fx:hover .photo-fx-ring {
+  transform: scale(1.04);
+}
+.photo-fx:hover .photo-fx-glow {
+  opacity: 0.85;
+}
+
+/* The photo itself (tilts on hover) */
+.photo-fx-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #001530;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--sc, 1));
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: pfx-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  will-change: transform;
+}
+.photo-fx:hover .photo-fx-card {
+  --sc: 1.03;
+  transition: transform 0.12s linear;
+}
+.photo-fx-card img {
+  transition: transform 0.6s ease;
+}
+.photo-fx:hover .photo-fx-card img {
+  transform: scale(1.1);
+}
+
+/* Shine that follows the mouse, plus a light sweep */
+.photo-fx-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.38),
+    transparent 48%
+  );
+  transition: opacity 0.3s ease;
+}
+.photo-fx:hover .photo-fx-shine {
+  opacity: 1;
+}
+.photo-fx-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.photo-fx:hover .photo-fx-card::after {
+  animation: pfx-sweep 0.9s ease;
+}
+
+/* Orbiting dots (circle photos only) */
+.photo-fx-orbit {
+  position: absolute;
+  inset: -22px;
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: pfx-orbit 12s linear infinite;
+}
+.photo-fx-orbit i {
+  position: absolute;
+  border-radius: 9999px;
+}
+.photo-fx-orbit i:nth-child(1) {
+  top: -4px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  background: #68ffff;
+  box-shadow: 0 0 12px #68ffff;
+}
+.photo-fx-orbit i:nth-child(2) {
+  bottom: 14%;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+.photo-fx-orbit i:nth-child(3) {
+  bottom: -3px;
+  left: 20%;
+  width: 7px;
+  height: 7px;
+  background: #4d86ff;
+  box-shadow: 0 0 10px #4d86ff;
+}
+
+/* Click burst */
+.photo-fx-burst {
+  position: absolute;
+  inset: -6px;
+  border: 3px solid #68ffff;
+  pointer-events: none;
+  animation: pfx-burst 0.7s ease-out forwards;
+}
+
+@keyframes pfx-spin {
+  to {
+    --pfx-a: 360deg;
+  }
+}
+@keyframes pfx-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+@keyframes pfx-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+@keyframes pfx-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes pfx-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+@keyframes pfx-sweep {
+  to {
+    left: 140%;
+  }
+}
+@keyframes pfx-burst {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-fx,
+  .photo-fx-ring,
+  .photo-fx-glow,
+  .photo-fx-orbit,
+  .photo-fx-card {
+    animation: none !important;
+  }
+}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import Bubbles from '../Bubbles'
+import PhotoFX from '../PhotoFX'
 
 function Dot() {
   return <span className="h-[13px] w-[13px] shrink-0 rounded-full bg-[#6ea5ff]" />
@@ -68,12 +69,12 @@ function Hero() {
         </div>
 
         {/* Photo side */}
-        <div className="shrink-0 animate-photo rounded-full bg-[linear-gradient(135deg,#ffffff,#3381ff_50%,#001e4f)] p-[5px] shadow-[0_0_40px_rgba(0,72,255,0.45)]">          <img
-            src="/images/hero.png"
-            alt="Ashad Alam"
-            className="h-64 w-64 rounded-full object-cover object-[center_20%] sm:h-80 sm:w-80 lg:h-[399px] lg:w-[421px]"
-          />
-        </div>
+        <PhotoFX
+          src="/images/hero.png"
+          alt="Ashad Alam"
+          className="h-64 w-64 shrink-0 sm:h-80 sm:w-80 lg:h-[399px] lg:w-[421px]"
+          imgClassName="object-[center_20%]"
+        />
       </div>
     </section>
   )

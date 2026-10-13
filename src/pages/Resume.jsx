@@ -15,6 +15,7 @@ import {
   User,
   Wrench,
 } from 'lucide-react'
+import PhotoFX from '../components/PhotoFX'
 
 const summary =
   'BSc (Hons) IT student specializing in UI/UX design and web development, with hands-on experience in HTML, CSS, JavaScript, Java, Python, database management, and Figma. Experienced in developing responsive web interfaces and technology-based projects, while also bringing professional experience in documentation management, client coordination, and administrative operations. Strong attention to detail, communication, and problem-solving skills with a proven ability to work independently and collaboratively.'
@@ -189,10 +190,11 @@ function Resume() {
         <aside className="flex flex-col gap-8 xl:sticky xl:top-[112px]">
           {/* Profile */}
           <div className={`${card} px-6 pb-8 pt-[34px] xl:px-[34px]`}>
-            <img
+            <PhotoFX
               src="/images/resume-photo.jpg"
               alt="Ashad Alam"
-              className="h-[140px] w-[140px] rounded-full border-2 border-white object-cover object-top"
+              className="h-[140px] w-[140px]"
+              imgClassName="object-top"
             />
             <h1 className="mt-5 font-sans text-3xl font-bold xl:text-[34px] xl:leading-[41px]">
               Ashad Alam

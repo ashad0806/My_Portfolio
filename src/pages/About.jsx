@@ -9,6 +9,7 @@ import {
   PaintBucket,
   PenTool,
 } from 'lucide-react'
+import PhotoFX from '../components/PhotoFX'
 
 const infoCards = [
   { icon: MapPin, title: 'Location', lines: ['Chabahil, 7, KTM', 'Nepal'] },
@@ -113,13 +114,13 @@ function About() {
             <div className="relative mx-auto aspect-[478/546] w-[78%] max-w-[478px] xl:mx-0 xl:mr-[29px] xl:mt-[150px] xl:w-[478px]">
               <div className="absolute inset-0 -translate-x-4 translate-y-5 rounded-[30px] bg-[#1444a4] xl:-translate-x-[51px] xl:translate-y-[55px]" />
               <div className="absolute inset-0 -translate-x-2 translate-y-2.5 rounded-[30px] bg-navy xl:-translate-x-[29px] xl:translate-y-[29px]" />
-              <div className="relative h-full rounded-[30px] bg-[linear-gradient(135deg,#ffffff,#0055ff)] p-[4px]">
-                <img
-                  src="/images/about-photo.jpg"
-                  alt="Ashad Alam"
-                  className="h-full w-full rounded-[26px] object-cover object-top"
-                />
-              </div>
+                            <PhotoFX
+                shape="card"
+                src="/images/about-photo.jpg"
+                alt="Ashad Alam"
+                className="h-full w-full"
+                imgClassName="object-top"
+              />
             </div>
           </div>
 
