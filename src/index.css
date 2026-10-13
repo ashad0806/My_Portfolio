@@ -606,3 +606,8 @@ html.light [data-keep] {
   0%, 50% { opacity: 1; }
   50.01%, 100% { opacity: 0; }
 }
+
+/* Keep photos above the background glow */
+img:not(.absolute):not(.fixed) {
+  position: relative;
+}

@@ -7,12 +7,12 @@ const orbs = [
   { left: '72%', top: '66%', size: 420, color: '#00e5ff', dur: 40, dx: -80, dy: -100 },
 ]
 
-// Fixed behind the whole site: drifting glow orbs and slowly rising bubbles
+// Fixed behind the photos: drifting glow orbs and slowly rising bubbles
 function BackgroundFX() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] overflow-hidden"
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
     >
       {orbs.map((o, i) => (
         <span
