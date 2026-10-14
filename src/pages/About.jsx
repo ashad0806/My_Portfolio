@@ -111,16 +111,34 @@ function About() {
             </div>
 
             {/* Photo side */}
-            <div className="relative mx-auto aspect-[478/546] w-[78%] max-w-[478px] xl:mx-0 xl:mr-[29px] xl:mt-[150px] xl:w-[478px]">
-              <div className="absolute inset-0 -translate-x-4 translate-y-5 rounded-[30px] bg-[#1444a4] xl:-translate-x-[51px] xl:translate-y-[55px]" />
-              <div className="absolute inset-0 -translate-x-2 translate-y-2.5 rounded-[30px] bg-navy xl:-translate-x-[29px] xl:translate-y-[29px]" />
-                            <PhotoFX
+                        <div className="relative mx-auto aspect-[478/546] w-[78%] max-w-[478px] xl:mx-0 xl:mr-[29px] xl:mt-[150px] xl:w-[478px]">
+              {/* Back cards: each floats on its own rhythm for a layered, 3D feel */}
+              <div className="absolute inset-0 -translate-x-4 translate-y-5 xl:-translate-x-[51px] xl:translate-y-[55px]">
+                <div className="about-float-a h-full w-full rounded-[30px] bg-[#1444a4]" />
+              </div>
+              <div className="absolute inset-0 -translate-x-2 translate-y-2.5 xl:-translate-x-[29px] xl:translate-y-[29px]">
+                <div className="about-float-b h-full w-full rounded-[30px] bg-navy" />
+              </div>
+
+              {/* The photo: floats, tilts with the mouse, spinning border, shine, click burst */}
+              <PhotoFX
                 shape="card"
                 src="/images/about-photo.jpg"
                 alt="Ashad Alam"
                 className="h-full w-full"
                 imgClassName="object-top"
               />
+
+              {/* Floating skill badges */}
+              <span className="about-bob-1 absolute -top-4 right-2 z-10 hidden items-center rounded-full border border-white/40 bg-[#0b2e76]/85 px-4 py-2 font-calibri text-lg shadow-[0_8px_20px_rgba(0,0,0,0.45)] backdrop-blur sm:flex xl:-right-6">
+                UI/UX Design
+              </span>
+              <span className="about-bob-2 absolute left-0 top-[42%] z-10 hidden items-center rounded-full border border-white/40 bg-[#0b2e76]/85 px-4 py-2 font-calibri text-lg shadow-[0_8px_20px_rgba(0,0,0,0.45)] backdrop-blur sm:flex xl:-left-14">
+                Web Dev
+              </span>
+              <span className="about-bob-3 absolute bottom-8 right-2 z-10 hidden items-center rounded-full border border-white/40 bg-[#0b2e76]/85 px-4 py-2 font-calibri text-lg shadow-[0_8px_20px_rgba(0,0,0,0.45)] backdrop-blur sm:flex xl:-right-8">
+                Python
+              </span>
             </div>
           </div>
 

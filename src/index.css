@@ -611,3 +611,43 @@ html.light [data-keep] {
 img:not(.absolute):not(.fixed) {
   position: relative;
 }
+
+/* ===== Step 32: About photo floating layers ===== */
+.about-float-a {
+  animation: about-float-a 7s ease-in-out infinite;
+}
+.about-float-b {
+  animation: about-float-b 5.5s ease-in-out -1.5s infinite;
+}
+.about-bob-1 {
+  animation: about-bob 4.8s ease-in-out infinite;
+}
+.about-bob-2 {
+  animation: about-bob 5.6s ease-in-out -2s infinite;
+}
+.about-bob-3 {
+  animation: about-bob 6.4s ease-in-out -3.5s infinite;
+}
+
+@keyframes about-float-a {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-10px, 16px) rotate(-1.6deg); }
+}
+@keyframes about-float-b {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(8px, -14px) rotate(1.2deg); }
+}
+@keyframes about-bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-16px) rotate(2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-float-a,
+  .about-float-b,
+  .about-bob-1,
+  .about-bob-2,
+  .about-bob-3 {
+    animation: none;
+  }
+}
